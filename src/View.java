@@ -52,10 +52,6 @@ public class View extends JFrame implements Observer {
 			}
 		}
 	}
-	
-	public XOButton[][] getButtons() {
-		return buttons; 
-	}
 
 	@Override
 	public void update(Observable o, Object arg) {

@@ -49,7 +49,7 @@ public class Model extends Observable {
 				pos[0] = x;
 				pos[1] = y;
 				
-				AbstractMap.SimpleEntry<int[], Turn> map = new AbstractMap.SimpleEntry<int[], Turn> (pos, this.getTurn());
+				AbstractMap.SimpleEntry<int[], Turn> map = new AbstractMap.SimpleEntry<int[], Turn> (pos, this.turn);
 				
 				setChanged(); 
 				this.notifyObservers(map);
@@ -61,7 +61,7 @@ public class Model extends Observable {
 	if(numTurns >= 5) {
 		if(win()) {
 			setChanged(); 
-			notifyObservers(this.getTurn());
+			notifyObservers(this.turn);
 			clearChanged(); 
 			resetBoard();
 		}
@@ -110,16 +110,8 @@ public class Model extends Observable {
 		}
 		return false;
 	}
-	
-	public int getNumTurns() {
-		return numTurns; 
-	}
-	
-	public Turn getTurn() {
-		return turn; 
-	}
 
-	public void resetBoard() {
+	private void resetBoard() {
 		for(int i = 0; i < Model.DIM; i++) {
 			for(int j = 0; j < Model.DIM; j++) {
 				grid[i][j] = -1; 
