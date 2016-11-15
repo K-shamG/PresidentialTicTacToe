@@ -6,8 +6,8 @@ public class XOButton extends JButton {
 	ImageIcon X, O; 
 	
 	public XOButton() {
-		X = new ImageIcon("C:\\Users\\Kshamina\\workspace\\TicTacToe\\TRUMP.jpg");
-		O = new ImageIcon("C:\\Users\\Kshamina\\workspace\\TicTacToe\\CLINTON.jpg");
+		X = new ImageIcon(this.getClass().getResource("TRUMP.jpg"));
+		O = new ImageIcon(this.getClass().getResource("CLINTON.jpg"));
 	}
 	
 	public void setTurn(Turn t) {

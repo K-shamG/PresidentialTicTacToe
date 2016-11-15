@@ -1,4 +1,5 @@
 
+import java.util.AbstractMap;
 import java.util.Observable;
 
 
@@ -27,9 +28,11 @@ public class Model extends Observable {
 		notifyObservers();
 	}
 	
-	public Turn play(int x, int y) {
+	public void play(int x, int y) {
+		int[] pos = new int[2];
+		
 		if(blankBoxes == 0) {
-			return null;
+			return;
 		}
 		
 		if(numTurns < 9) {
@@ -43,12 +46,13 @@ public class Model extends Observable {
 				numTurns++;
 				blankBoxes--;
 				
-				int[] pos = new int[2];
 				pos[0] = x;
 				pos[1] = y;
 				
+				AbstractMap.SimpleEntry<int[], Turn> map = new AbstractMap.SimpleEntry<int[], Turn> (pos, this.getTurn());
+				
 				setChanged(); 
-				this.notifyObservers(pos);
+				this.notifyObservers(map);
 				clearChanged(); 
 			}
 		}
@@ -57,7 +61,7 @@ public class Model extends Observable {
 	if(numTurns >= 5) {
 		if(win()) {
 			setChanged(); 
-			notifyObservers("win");
+			notifyObservers(this.getTurn());
 			clearChanged(); 
 			resetBoard();
 		}
@@ -70,7 +74,6 @@ public class Model extends Observable {
 	}
 	
 	switchTurns();
-	return turn; 
 }
 	
 	private void switchTurns() {

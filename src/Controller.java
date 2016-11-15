@@ -3,11 +3,9 @@ import java.awt.event.ActionListener;
 
 public class Controller implements ActionListener {
 	private Model m;
-	private View v;
 	
-	public Controller(View v, Model m) {
+	public Controller(Model m) {
 		this.m = m;
-		this.v = v;
 	}
 	
 	@Override
@@ -19,8 +17,7 @@ public class Controller implements ActionListener {
 		int x = Integer.parseInt(coord[0]);
 		int y = Integer.parseInt(coord[1]);
 		
-		Turn t = m.play(x, y);
-		v.setTurn(t);
+		m.play(x, y);
 	}
 
 }
