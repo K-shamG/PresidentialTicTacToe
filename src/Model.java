@@ -81,7 +81,7 @@ public class Model extends Observable {
 		else if(turn == Turn.O) turn = Turn.X;
 	}
 	
-	private boolean win() {
+	public boolean win() {
 		int result = -1;
 		
 		for (int i = 0; i < 3; i++) {
@@ -111,7 +111,7 @@ public class Model extends Observable {
 		return false;
 	}
 
-	private void resetBoard() {
+	public void resetBoard() {
 		for(int i = 0; i < Model.DIM; i++) {
 			for(int j = 0; j < Model.DIM; j++) {
 				grid[i][j] = -1; 
@@ -123,6 +123,10 @@ public class Model extends Observable {
 		
 		setChanged();
 		notifyObservers("reset");
+	}
+	
+	public int[][] getGrid() {
+		return grid; 
 	}
 
 }
